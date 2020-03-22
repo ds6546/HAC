@@ -23,7 +23,7 @@ public class UDPServer {
         try 
         {
             DatagramSocket socket = new DatagramSocket(1234);
-            socket.setSoTimeout(30000);
+            socket.setSoTimeout(300000);
             byte[] incomingData = new byte[1024];
 
             boolean is_first_data_received = false;
@@ -185,7 +185,7 @@ public class UDPServer {
                                                             sbf.append(network.get(i).getPort());
                                                             if (s!=(network.size()-1))
                                                             {
-                                                                sbf.append("$$");
+                                                                sbf.append("%%%%");
                                                             }
                                                         }
 							String r0 = sbf.toString();
