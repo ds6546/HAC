@@ -93,25 +93,44 @@ public class UDPClient
                             if(actualData.substring(0,4).equals("new-") && isFirstResponse == true)
                             {
                                 isFirstResponse = false;
-                                String[] strdiv = actualData.split("-");
-                                String useful_data = strdiv[1];
-                                String[] individual_clients = useful_data.split("$$");
+                                String useful_data = actualData.substring(4);
+                                
+                                
+                                
+                                System.out.println(useful_data);
+                                
+                                String[] individual_clients = useful_data.split("%%%%");
+                                System.out.println(individual_clients[0]);
+                                System.out.println(individual_clients[1]);
                                 
                                 SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
                                 
                                 for (int e=0; e<individual_clients.length;e++)
                                 {
+                                    
                                     String[] individualComponents = individual_clients[e].split("%%");
+                                    System.out.println(individualComponents[0]);
+                                    System.out.println(individualComponents[1]);
+                                    System.out.println(individualComponents[2]);
+                                    
                                     InetAddress ress = InetAddress.getByName(individualComponents[0]);
                                     
                                     
                                      try{
+                                         //System.out.println("ddddddddddddddddddddd");
+                                         System.out.println(individualComponents[1]);
                                          Date date = df.parse(individualComponents[1]);
+                                         //System.out.println("eeeeeeeeeeeeeee");
                                          Calendar cale = Calendar.getInstance();
+                                         
                                                     cale.setTime(date);
-                                                    int prt = Integer.parseInt(individualComponents[2]);
+                                             //       System.out.println("hhhhhhhhhhhhhhhh");
+                                                    System.out.println(individualComponents[2]);
+                                                    System.out.println(individualComponents[2]);
+                                                    int prt = Integer.parseInt(individualComponents[2].trim());
+                                               //     System.out.println("ooooooooooooooooooo");
                                             
-                                           network.add(new Client(ress, cale, prt));
+                                    network.add(new Client(ress, cale, prt));
                                                }
                                                         catch (ParseException x)
                                                                     {
