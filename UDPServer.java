@@ -50,6 +50,11 @@ public class UDPServer {
 				
 
 				socket.receive(receivePacket);
+                                String message = new String(receivePacket.getData());
+
+				
+
+				System.out.println("Received message from client: " + message);
                                 is_first_data_received = true;
 
 				// Note the time
@@ -58,11 +63,7 @@ public class UDPServer {
 
 				int port = receivePacket.getPort();
 
-				String message = new String(receivePacket.getData());
-
 				
-
-				System.out.println("Received message from client: " + message);
 
              System.out.println("Client IP:"+ address.getHostAddress());
 
@@ -74,13 +75,13 @@ public class UDPServer {
 
 				Calendar cal = Calendar.getInstance();
 
-				System.out.println("Package was received at: --------------------" + cal.getTime().toString());
+				//System.out.println("Package was received at: --------------------" + cal.getTime().toString());
 
 				
 
 				cal.add(Calendar.SECOND, 30) ;
 
-				System.out.println("Maximum wait_time from the same client till: " + cal.getTime().toString());
+				//System.out.println("Maximum wait_time from the same client till: " + cal.getTime().toString());
 
 				
 
@@ -197,11 +198,13 @@ public class UDPServer {
 
 							byte[] s1 = r1.getBytes();
 
+                                                        System.out.println("Seding message to all clients after new client added..hahahahahahahahahahahahahahahfuckkkkkkkkkkkkkkkkk");
+                                                        System.out.println(r1);
 							for (int k=0; k<network.size(); k++)
 
 							{
-							DatagramPacket sp = new DatagramPacket(s1, s1.length, network.get(k).getIP(), network.get(k).getPort());
-							socket.send(sp);
+							DatagramPacket spa = new DatagramPacket(s1, s1.length, network.get(k).getIP(), network.get(k).getPort());
+							socket.send(spa);
 
 							}
 
